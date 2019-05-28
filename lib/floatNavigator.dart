@@ -22,6 +22,7 @@ class _FloatNavigatorState extends State<FloatNavigator>
     Icons.insert_comment,
     Icons.person
   ]; //导航项
+
   @override
   void initState() {
     _floatRadius = _height * 2 / 3;

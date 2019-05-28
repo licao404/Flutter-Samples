@@ -1,16 +1,8 @@
-# flutter_samples
+# Flutter Effects
 
-A new Flutter project.
+此 repo 中存放着一些平时做的个人觉得有意思的效果，会不定期更新，欢迎一起学习交流。
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+效果列表：
+ 
+ - Float Navigator
+ ![Float Navigator](images/float_navigator.png)
