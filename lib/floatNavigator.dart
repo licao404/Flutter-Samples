@@ -11,7 +11,7 @@ class _FloatNavigatorState extends State<FloatNavigator>
   int _activeIndex = 0; //激活项
   double _height = 48.0; //导航栏高度
   double _floatRadius; //悬浮图标半径
-  double _moveTween; //移动补间
+  double _moveTween = 0.0; //移动补间
   double _padding = 10.0; //浮动图标与圆弧之间的间隙
   AnimationController _animationController; //动画控制器
   Animation<double> _moveAnimation; //移动动画
@@ -28,8 +28,6 @@ class _FloatNavigatorState extends State<FloatNavigator>
     _floatRadius = _height * 2 / 3;
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 400));
-    _moveAnimation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-        parent: _animationController, curve: Curves.easeInCubic));
     super.initState();
   }
 
@@ -65,7 +63,7 @@ class _FloatNavigatorState extends State<FloatNavigator>
                               _padding /
                               2 -
                           _floatRadius / 3 * 2,
-                  left: _moveAnimation.value * singleWidth +
+                  left: _moveTween * singleWidth +
                       (singleWidth - _floatRadius) / 2 -
                       _padding / 2,
                   child: DecoratedBox(
@@ -109,7 +107,7 @@ class _FloatNavigatorState extends State<FloatNavigator>
                   ),
                   painter: ArcPainter(
                       navCount: _navs.length,
-                      moveTween: _moveTween ?? 0.0,
+                      moveTween: _moveTween,
                       padding: _padding),
                 )
               ],
@@ -145,9 +143,15 @@ class _FloatNavigatorState extends State<FloatNavigator>
       _animationController.forward();
     }
   }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 }
 
-//绘制圆弧
+//绘制圆弧背景
 class ArcPainter extends CustomPainter {
   final int navCount; //导航总数
   final double moveTween; //移动补间
